@@ -11,13 +11,12 @@ from . import agents
 # Register Gym environments.
 ##
 
-
 gym.register(
     id="Template-Bittle-Adil-Direct-v0",
-    entry_point=f"{__name__}.bittle_adil_env:BittleAdilEnv",
+    entry_point=f"{__name__}.bittle_adil_env:BittleEnv",
     disable_env_checker=True,
     kwargs={
-        "env_cfg_entry_point": f"{__name__}.bittle_adil_env_cfg:BittleAdilEnvCfg",
+        "env_cfg_entry_point": f"{__name__}.bittle_adil_env_cfg:BittleEnvCfg",
         "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:PPORunnerCfg",
     },
 )

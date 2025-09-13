@@ -1,0 +1,8 @@
+left back shoulder (-0.445,-0.519, -0.021)
+left back knee (-0.445, -0.519, -0.512)
+left front shoulder (-0.445, 0.522, -0,021)
+left front knee (-0.445, 0.522, -0.512)
+right back shoulder (0.451, -0.519, -0.021)
+right back knee (0.491, -0.519, -0.520)
+right front shoulder (0.451, 0.522, -0.021)
+right front knee (0.491, 0.522, -0.520)
