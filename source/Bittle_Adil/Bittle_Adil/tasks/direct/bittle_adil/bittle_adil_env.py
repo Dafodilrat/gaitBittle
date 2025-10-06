@@ -160,17 +160,17 @@ class BittleEnv(DirectRLEnv):
             1 - 2 * (quat[:, 2] ** 2 + quat[:, 3] ** 2),
         )
 
-        delta = torch.abs(self.actions - self.prev_actions)
+        # delta = torch.abs(self.actions - self.prev_actions)
         self.prev_actions = self.actions.clone()
 
         dist_to_goal = torch.norm(self.goal_points[:, :2] - pos[:, :2], dim=-1)
         self.prev_distance = dist_to_goal
 
         upright_bonus = torch.clamp(1.5 - (torch.abs(roll) + torch.abs(pitch)), min=0.0, max=1.5)
-        smooth_bonus = torch.exp(-torch.norm(delta, dim=-1))
+        # smooth_bonus = torch.exp(-torch.norm(delta, dim=-1))
         posture_penalty = (torch.clamp(torch.abs(roll) - 0.2, min=0.0) ** 2 +
                            torch.clamp(torch.abs(pitch) - 0.2, min=0.0) ** 2)
-        jerk_penalty = torch.norm(delta, dim=-1)
+        # jerk_penalty = torckh.norm(delta, dim=-1)
         velocity_penalty = torch.sum(torch.tanh(torch.abs(self.joint_vel) / 100), dim=-1)
         z_penalty = torch.clamp(-0.2 - pos[:, 2], min=0.0)
 
@@ -200,9 +200,9 @@ class BittleEnv(DirectRLEnv):
 
         reward = (
             self.cfg.rew_upright_gain * upright_bonus +
-            self.cfg.rew_smooth_gain * smooth_bonus -
+            # self.cfg.rew_smooth_gain * smooth_bonus -
             self.cfg.rew_posture_pen * posture_penalty -
-            self.cfg.rew_jerk_pen * jerk_penalty -
+            # self.cfg.rew_jerk_pen * jerk_penalty -
             self.cfg.rew_velocity_pen * velocity_penalty -
             self.cfg.rew_z_pen * z_penalty -
             self.cfg.rew_distance_pen * dist_to_goal +

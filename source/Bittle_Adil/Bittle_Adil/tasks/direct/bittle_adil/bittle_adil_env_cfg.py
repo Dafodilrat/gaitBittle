@@ -19,7 +19,7 @@ from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.terrains.terrain_generator_cfg import TerrainGeneratorCfg
 import isaaclab.terrains as terrain_gen
 from isaaclab.sensors.frame_transformer import FrameTransformerCfg
-from isaaclab.sensors import ContactSensorCfg
+from isaaclab.sensors.camera import CameraCfg
 
 
 
@@ -44,7 +44,7 @@ class BittleEnvCfg(DirectRLEnvCfg):
     )
 
     scene: InteractiveSceneCfg = InteractiveSceneCfg(
-        num_envs=1,
+        num_envs=2,
         env_spacing=10.0,
         replicate_physics=True,
         filter_collisions=True,
@@ -111,6 +111,18 @@ class BittleEnvCfg(DirectRLEnvCfg):
     #     update_period=0.0,
     #     history_length=1,
     #     debug_vis=False,
+    # )
+
+    # cam_cfg = CameraCfg(
+    #     prim_path="/World/envs/env_.*/bittle/depth_cam",
+    #     parent_prim_path="/World/envs/env_.*/bittle/base_frame_link",  # adjust to Bittle link name
+    #     translation=(0.1, 0.0, 0.05),   # small offset forward
+    #     orientation=(1.0, 0.0, 0.0, 0.0),
+    #     resolution=(640, 480),
+    #     horizontal_fov=90.0,
+    #     depth=True,       # enable depth output
+    #     rgb=False,        # skip RGB if only depth needed
+    #     semantic=False,
     # )
 
     # ====== REWARD WEIGHTS (from GymWrapper) ======
